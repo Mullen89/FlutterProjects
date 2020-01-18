@@ -27,6 +27,13 @@ class DicePage extends StatefulWidget {
 }
 
 class _DicePageState extends State<DicePage> {
+  void randFunc() {
+    leftDiceBtn = Random().nextInt(6) + 1;
+    rightDiceBtn = Random().nextInt(6) + 1;
+    total = leftDiceBtn + rightDiceBtn;
+    totalColor = Colors.white;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,11 +86,4 @@ class _DicePageState extends State<DicePage> {
       ),
     );
   }
-}
-
-void randFunc() {
-  leftDiceBtn = Random().nextInt(6) + 1;
-  rightDiceBtn = Random().nextInt(6) + 1;
-  total = leftDiceBtn + rightDiceBtn;
-  totalColor = Colors.white;
 }
