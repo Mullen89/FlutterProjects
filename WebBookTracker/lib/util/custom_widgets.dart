@@ -1,6 +1,3 @@
-import 'package:book_tracker_app/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
@@ -89,90 +86,6 @@ class kButtonAttention extends StatelessWidget {
         primary: kColorAttention,
         textStyle: kTextStyleAttention,
       ),
-    );
-  }
-}
-
-class kStreamBuilderUserDataSnapshot extends StatelessWidget {
-  const kStreamBuilderUserDataSnapshot({
-    Key? key,
-    required this.usersCollection,
-    required this.userDataTrait,
-    required this.textStyle,
-  }) : super(key: key);
-
-  final CollectionReference<Object?> usersCollection;
-  final String userDataTrait;
-  final TextStyle textStyle;
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: usersCollection.snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        final userListStream = snapshot.data!.docs.map((userData) {
-          return WebsiteUser.fromDocument(userData);
-        }).where((element) {
-          return (element.uid == FirebaseAuth.instance.currentUser!.uid);
-        }).toList();
-
-        WebsiteUser currentUser = userListStream.first;
-        String data;
-
-        switch (userDataTrait) {
-          case "displayName":
-            {
-              data = currentUser.displayName;
-            }
-            break;
-
-          case "avatar":
-            {
-              data = currentUser.avatar;
-            }
-            break;
-
-          case "id:":
-            {
-              data = currentUser.id;
-            }
-            break;
-
-          case "profession:":
-            {
-              data = currentUser.profession;
-            }
-            break;
-
-          case "quote:":
-            {
-              data = currentUser.quote;
-            }
-            break;
-
-          case "uid:":
-            {
-              data = currentUser.uid;
-            }
-            break;
-
-          default:
-            {
-              data = "";
-            }
-            break;
-        }
-
-        return Text(
-          "${data}",
-          style: textStyle,
-        );
-      },
     );
   }
 }

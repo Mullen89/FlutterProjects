@@ -29,15 +29,48 @@ class UserHomePage extends StatelessWidget {
               "A. Reader",
               style: Theme.of(context).textTheme.headline6,
             ),
-
-            // This StreamBuilder gets the data from the firebase cloudstore database.
-            kStreamBuilderUserDataSnapshot(
-              usersCollection: usersCollection,
-              userDataTrait: "displayName",
-              textStyle: kTextStyleTesting,
-            ),
           ],
         ),
+        actions: [
+          StreamBuilder<QuerySnapshot>(
+            stream: usersCollection.snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              final userListStream = snapshot.data!.docs.map((userData) {
+                return WebsiteUser.fromDocument(userData);
+              }).where((element) {
+                return (element.uid == FirebaseAuth.instance.currentUser!.uid);
+              }).toList();
+
+              WebsiteUser currentUser = userListStream.first;
+              return Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Text(
+                      currentUser.displayName,
+                      style: kTextStylePageInfo,
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 25.0,
+                    backgroundImage: NetworkImage(currentUser.avatar),
+                    backgroundColor: Colors.black,
+                  )
+                ],
+              );
+            },
+          ),
+          TextButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.logout),
+            label: Text(''),
+          )
+        ],
       ),
     );
   }

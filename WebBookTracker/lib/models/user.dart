@@ -27,29 +27,4 @@ class WebsiteUser {
         quote: data.get('Quote'),
         avatar: data.get('AvatarUrl'));
   }
-
-  String getID() {
-    return this.id;
-  }
-
-  String getUID() {
-    return this.uid;
-  }
-
-  String getDisplayName() {
-    return displayName;
-  }
-
-  String getProfession() {
-    return profession;
-  }
-
-  String getQuote() {
-    return quote;
-  }
-
-  String getAvatar() {
-    // Profile pic.
-    return avatar;
-  }
 }

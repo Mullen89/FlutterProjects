@@ -27,28 +27,4 @@ class Book {
         description: data.get('Description'),
         notes: data.get('Notes'));
   }
-
-  String getID() {
-    return id;
-  }
-
-  String getAuthor() {
-    return author;
-  }
-
-  String getTitle() {
-    return title;
-  }
-
-  String getGenre() {
-    return genre;
-  }
-
-  String getDescription() {
-    return description;
-  }
-
-  String getNotes() {
-    return notes;
-  }
 }
