@@ -9,6 +9,11 @@ void main() async {
   await Firebase.initializeApp;
   runApp(const BookTracker());
 }
+/**
+ * flutter run -d chrome --web-renderer html
+ * 
+ * run the above or else network images won't show
+ */
 
 class BookTracker extends StatelessWidget {
   const BookTracker({Key? key}) : super(key: key);

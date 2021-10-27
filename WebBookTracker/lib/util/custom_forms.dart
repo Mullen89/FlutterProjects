@@ -58,8 +58,7 @@ class kFormSignIn extends StatelessWidget {
                     : null;
               },
               controller: _emailTextController,
-              decoration: kInputDecorationForm(
-                  label: "Email", hint: "example@email.com"),
+              decoration: kInputDecorationForm(label: "Email", hint: "Email"),
             ),
           ),
           Padding(
@@ -78,7 +77,8 @@ class kFormSignIn extends StatelessWidget {
               },
               controller: _passwordTextController,
               obscureText: true,
-              decoration: kInputDecorationForm(label: "Password", hint: ""),
+              decoration:
+                  kInputDecorationForm(label: "Password", hint: "Password"),
             ),
           )
         ],
@@ -142,8 +142,7 @@ class kFormCreateAccount extends StatelessWidget {
                     : null;
               },
               controller: _emailTextController,
-              decoration: kInputDecorationForm(
-                  label: "Email", hint: "example@email.com"),
+              decoration: kInputDecorationForm(label: "Email", hint: "Email"),
             ),
           ),
           Padding(
@@ -169,7 +168,8 @@ class kFormCreateAccount extends StatelessWidget {
               },
               controller: _passwordTextController,
               obscureText: true,
-              decoration: kInputDecorationForm(label: "Password", hint: ""),
+              decoration:
+                  kInputDecorationForm(label: "Password", hint: "Password"),
             ),
           )
         ],

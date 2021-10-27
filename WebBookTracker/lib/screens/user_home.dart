@@ -1,5 +1,6 @@
 import 'package:book_tracker_app/models/book.dart';
 import 'package:book_tracker_app/models/user.dart';
+import 'package:book_tracker_app/screens/sign_in_screen.dart';
 import 'package:book_tracker_app/util/constants.dart';
 import 'package:book_tracker_app/util/custom_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -58,7 +59,10 @@ class UserHomePage extends StatelessWidget {
                   ),
                   CircleAvatar(
                     radius: 25.0,
-                    backgroundImage: NetworkImage(currentUser.avatar),
+                    // run: ""flutter run -d chrome --web-renderer html"" or image may not show up.
+                    backgroundImage: NetworkImage(currentUser.avatar == ""
+                        ? kNetworkImageGeneric
+                        : currentUser.avatar),
                     backgroundColor: Colors.black,
                   )
                 ],
@@ -66,8 +70,16 @@ class UserHomePage extends StatelessWidget {
             },
           ),
           TextButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.logout),
+            onPressed: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                return Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignInPage()));
+              });
+            },
+            icon: Icon(
+              Icons.logout,
+              color: kColorButton,
+            ),
             label: Text(''),
           )
         ],

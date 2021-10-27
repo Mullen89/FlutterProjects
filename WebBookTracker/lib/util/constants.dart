@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const String kNetworkImageGeneric =
+    "https://st4.depositphotos.com/1012074/26712/v/600/depositphotos_267121138-stock-illustration-young-avatar-face-with-sunglasses.jpg";
+
 const Color kColorButton = Color(0xFF263238); // blueGrey.shade900
 const Color kColorBackground = Color(0xFFCFD8DC); // blueGrey
 const Color kColorAttention = Color(0xFFE53935); // red.shade100
