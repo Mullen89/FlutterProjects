@@ -50,20 +50,90 @@ class UserHomePage extends StatelessWidget {
               WebsiteUser currentUser = userListStream.first;
               return Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Text(
-                      currentUser.displayName,
-                      style: kTextStylePageInfo,
+                  InkWell(
+                    child: CircleAvatar(
+                      radius: 25.0,
+                      // run: ""flutter run -d chrome --web-renderer html"" or image may not show up.
+                      backgroundImage: NetworkImage(currentUser.avatar == ""
+                          ? kNetworkImageGeneric
+                          : currentUser.avatar),
+                      backgroundColor: Colors.black,
                     ),
-                  ),
-                  CircleAvatar(
-                    radius: 25.0,
-                    // run: ""flutter run -d chrome --web-renderer html"" or image may not show up.
-                    backgroundImage: NetworkImage(currentUser.avatar == ""
-                        ? kNetworkImageGeneric
-                        : currentUser.avatar),
-                    backgroundColor: Colors.black,
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                                content: Container(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton.icon(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.mode_edit,
+                                            color: kColorButton,
+                                          ),
+                                          label: Text(""))
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 50.0,
+                                        backgroundImage: NetworkImage(
+                                            currentUser.avatar == ""
+                                                ? kNetworkImageGeneric
+                                                : currentUser.avatar),
+                                        backgroundColor: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 20.0, bottom: 4.0),
+                                        child: Text(
+                                          currentUser.displayName.toUpperCase(),
+                                          style: kTextStyleUserInfoItalicsBold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Text(
+                                          currentUser.profession,
+                                          style: kTextStyleUserInfoNormal,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Text(
+                                          currentUser.quote,
+                                          style: kTextStyleUserInfoItalics,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ));
+                          });
+                    },
                   )
                 ],
               );

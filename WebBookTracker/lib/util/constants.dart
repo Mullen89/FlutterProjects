@@ -20,6 +20,15 @@ const TextStyle kTextStyleGeneralInfo =
     TextStyle(fontSize: 12.0, fontStyle: FontStyle.italic, color: Colors.black);
 const TextStyle kTextStylePageInfo =
     TextStyle(fontSize: 20.0, color: Colors.black);
+const TextStyle kTextStyleUserInfoItalics =
+    TextStyle(fontSize: 20.0, color: Colors.black, fontStyle: FontStyle.italic);
+const TextStyle kTextStyleUserInfoItalicsBold = TextStyle(
+    fontSize: 20.0,
+    color: Colors.black,
+    fontStyle: FontStyle.italic,
+    fontWeight: FontWeight.bold);
+const TextStyle kTextStyleUserInfoNormal =
+    TextStyle(fontSize: 20.0, color: Colors.black);
 
 InputDecoration kInputDecorationForm(
     {required String label, required String hint}) {
