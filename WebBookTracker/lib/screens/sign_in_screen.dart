@@ -61,27 +61,6 @@ class _SignInPageState extends State<SignInPage> {
                   ? kButtonBasic(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // FirebaseAuth.instance
-                          //     .createUserWithEmailAndPassword(
-                          //         email: email, password: password)
-                          //     .then((value) {
-                          //   if (value.user != null) {
-                          //     String displayName = email.split('@')[0];
-                          //     createUser(displayName: displayName)
-                          //         .then((value) {
-                          //       FirebaseAuth.instance
-                          //           .signInWithEmailAndPassword(
-                          //               email: email, password: password)
-                          //           .then((value) {
-                          //         return Navigator.push(
-                          //             context,
-                          //             MaterialPageRoute(
-                          //               builder: (context) => UserHomePage(),
-                          //             ));
-                          //       });
-                          //     });
-                          //   }
-                          // });
                           firebaseCreateUserAndSignIn(
                               formKey: _formKey,
                               email: _emailTextController,
