@@ -1,6 +1,7 @@
 import 'package:book_tracker_app/models/book.dart';
 import 'package:book_tracker_app/models/image_viewer.dart';
 import 'package:book_tracker_app/models/user.dart';
+import 'package:book_tracker_app/screens/profile_edit_screen.dart';
 import 'package:book_tracker_app/screens/sign_in_screen.dart';
 import 'package:book_tracker_app/util/constants.dart';
 import 'package:book_tracker_app/util/custom_widgets.dart';
@@ -78,7 +79,17 @@ class UserHomePage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       TextButton.icon(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return ProfileEditPage(
+                                                  mUser: currentUser,
+                                                );
+                                              },
+                                            ).then((value) =>
+                                                Navigator.pop(context));
+                                          },
                                           icon: Icon(
                                             Icons.mode_edit,
                                             color: kColorButton,

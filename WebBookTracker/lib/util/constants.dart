@@ -27,6 +27,11 @@ const TextStyle kTextStyleUserInfoItalicsBold = TextStyle(
     color: Colors.black,
     fontStyle: FontStyle.italic,
     fontWeight: FontWeight.bold);
+const TextStyle kTextStyleUserInfoBold = TextStyle(
+    fontSize: 20.0,
+    color: Colors.black,
+    fontStyle: FontStyle.italic,
+    fontWeight: FontWeight.bold);
 const TextStyle kTextStyleUserInfoNormal =
     TextStyle(fontSize: 20.0, color: Colors.black);
 

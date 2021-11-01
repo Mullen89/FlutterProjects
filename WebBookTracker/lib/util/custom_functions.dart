@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:book_tracker_app/models/user.dart';
 import 'package:book_tracker_app/screens/sign_in_screen.dart';
 import 'package:book_tracker_app/screens/user_home.dart';
 import 'package:book_tracker_app/util/custom_forms.dart';
@@ -42,14 +45,39 @@ Future<void> createUser({required String displayName}) async {
       FirebaseFirestore.instance.collection('users');
   FirebaseAuth auth = FirebaseAuth.instance;
   String userUID = auth.currentUser!.uid;
+  String profession = "Your profession...";
+  String quote = "A quote you like...";
 
   Map<String, dynamic> user = {
     'AvatarUrl': '',
     'DisplayName': displayName,
-    'Profession': '',
-    'Quote': '',
+    'Profession': profession,
+    'Quote': quote,
     'UID': userUID,
   };
 
   await userCollectionReference.add(user);
+}
+
+void firebaseUpdateProfile(
+    {required WebsiteUser mUser,
+    required String newName,
+    required String newProfession,
+    required String newQuote,
+    required String newAvatar,
+    required BuildContext context}) async {
+  final CollectionReference userCollectionReference =
+      FirebaseFirestore.instance.collection('users');
+
+  Map<String, dynamic> user = {
+    'AvatarUrl': newAvatar,
+    'DisplayName': newName,
+    'Profession': newProfession,
+    'Quote': newQuote,
+    'UID': mUser.uid,
+  };
+
+  await userCollectionReference.doc(mUser.id).update(user);
+
+  Navigator.pop(context);
 }
